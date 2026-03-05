@@ -1,17 +1,28 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Album Collection</title>
+  <title>RASHI ARCHIVE</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>My Album Collection</h1>
+
+  <!-- Password overlay -->
+  <div id="password-overlay" class="password-overlay">
+    <div class="password-box">
+      <h2>Enter Password</h2>
+      <input type="password" id="password-input" placeholder="Password">
+      <button id="password-btn">Unlock</button>
+      <p id="password-msg" class="error-msg"></p>
+    </div>
+  </div>
+
+  <header id="main-header" class="hidden">
+    <h1><span class="white-text">RASHI</span> <span class="yellow-text">ARCHIVE</span></h1>
   </header>
 
-  <main>
+  <main id="main-content" class="hidden">
     <div id="album-list" class="album-list"></div>
     <div id="album-view" class="album-view hidden">
       <button id="back-btn">← Back</button>
