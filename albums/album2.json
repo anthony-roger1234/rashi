@@ -1,0 +1,9 @@
+{
+  "title": "Ally Julian . lysiahly_llya",
+  "cover": "example.jpg",
+  "media": [
+    { "type": "image", "src": "example.jpg" },
+    { "type": "image", "src": "example.jpg" },
+    { "type": "video", "src": "example" }
+  ]
+}
