@@ -17,7 +17,9 @@ const backBtn = document.getElementById('back-btn');
 // Albums JSON
 const albums = [
   'albums/album1.json',
-  'albums/album2.json'
+  'albums/album2.json',
+  'albums/album3.json',
+  'albums/album4.json'
 ];
 
 // Password check
