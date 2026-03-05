@@ -5,11 +5,15 @@ const mediaContainer = document.getElementById('media-container');
 const backBtn = document.getElementById('back-btn');
 const paginationControls = document.getElementById('pagination-controls');
 
+const lightboxOverlay = document.getElementById('lightbox-overlay');
+const lightboxImg = document.getElementById('lightbox-img');
+let scale = 1;
+
 const albumsPerPage = 24;
 let currentPage = 1;
 let allAlbums = [];
 
-// Sample data simulating album JSONs - replace this with your fetch calls
+// Sample albums - replace with your JSON fetch if needed
 function getSampleAlbums() {
   const sampleAlbums = [];
   for (let i = 1; i <= 50; i++) {
@@ -26,7 +30,7 @@ function getSampleAlbums() {
   return sampleAlbums;
 }
 
-// Initialize albums (simulate fetching)
+// Initialize albums
 function initAlbums() {
   allAlbums = getSampleAlbums();
   renderAlbumPage(currentPage);
@@ -45,7 +49,7 @@ function createAlbumCard(album) {
   albumList.appendChild(card);
 }
 
-// Render album list page
+// Render album page
 function renderAlbumPage(page) {
   albumList.innerHTML = '';
   const start = (page - 1) * albumsPerPage;
@@ -57,7 +61,7 @@ function renderAlbumPage(page) {
   showAlbumList();
 }
 
-// Render pagination controls
+// Render pagination
 function renderPaginationControls() {
   paginationControls.innerHTML = '';
   const totalPages = Math.ceil(allAlbums.length / albumsPerPage);
@@ -90,7 +94,6 @@ function showAlbum(album) {
       element.alt = album.title;
     } else if (item.type === 'video') {
       element = document.createElement('iframe');
-      // Fix YouTube embed URL if needed
       if (item.src.includes("youtube.com/watch")) {
         element.src = item.src.replace("watch?v=", "embed/");
       } else {
@@ -106,24 +109,17 @@ function showAlbum(album) {
   });
 }
 
-// Show album list and pagination
+// Show album list
 function showAlbumList() {
   albumView.classList.add('hidden');
   albumList.style.display = 'grid';
   paginationControls.style.display = 'block';
 }
 
-// Back button handler
+// Back button
 backBtn.addEventListener('click', showAlbumList);
 
-// Initialize page
-initAlbums();
 // Lightbox functionality
-const lightboxOverlay = document.getElementById('lightbox-overlay');
-const lightboxImg = document.getElementById('lightbox-img');
-let scale = 1;
-
-// Open lightbox when clicking an image in album view
 mediaContainer.addEventListener('click', (e) => {
   if(e.target.tagName === 'IMG') {
     lightboxImg.src = e.target.src;
@@ -133,25 +129,26 @@ mediaContainer.addEventListener('click', (e) => {
   }
 });
 
-// Zoom with scroll
+// Scroll zoom
 lightboxOverlay.addEventListener('wheel', (e) => {
   e.preventDefault();
   const delta = e.deltaY < 0 ? 0.1 : -0.1;
   scale += delta;
-  scale = Math.min(Math.max(scale, 0.5), 5); // min 0.5x, max 5x
+  scale = Math.min(Math.max(scale, 0.5), 5);
   lightboxImg.style.transform = `scale(${scale})`;
 });
 
-// Close lightbox when clicking outside the image
+// Close lightbox
 lightboxOverlay.addEventListener('click', (e) => {
   if(e.target === lightboxOverlay) {
     lightboxOverlay.style.display = 'none';
   }
 });
-
-// Close on ESC
 document.addEventListener('keydown', (e) => {
   if(e.key === 'Escape') {
     lightboxOverlay.style.display = 'none';
   }
 });
+
+// Initialize page
+initAlbums();
