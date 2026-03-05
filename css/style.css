@@ -1,131 +1,109 @@
-/* Background & general styling */
+/* General styling */
 body {
-  font-family: Arial, sans-serif;
-  background: #000;
-  color: white;
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000; /* black background */
+  color: #fff;
 }
 
-/* Header Title */
 header {
   text-align: center;
-  padding: 1rem;
+  padding: 20px;
+  background-color: #111;
 }
 
-.white-text { color: white; }
-.yellow-text { color: yellow; }
+h1 {
+  font-size: 2.5em;
+}
 
-/* Album list grid */
+h1 .white {
+  color: #fff;
+}
+
+h1 .yellow {
+  color: #FFD700;
+}
+
+/* Album list */
 .album-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 2rem;
+  padding: 20px;
+  gap: 20px;
 }
 
-/* Album Card */
 .album-card {
-  background: #111;
+  background-color: #111;
+  border: 1px solid #444;
   border-radius: 8px;
-  margin: 1rem;
   width: 220px;
+  overflow: hidden;
   text-align: center;
-  box-shadow: 0 0 10px #333;
   transition: transform 0.2s;
 }
 
-.album-card:hover { transform: scale(1.05); }
+.album-card:hover {
+  transform: scale(1.05);
+}
 
 .album-card img {
   width: 100%;
-  border-radius: 5px;
+  height: 180px;
+  object-fit: cover;
 }
 
-.album-card button {
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: red;
+.album-card h3 {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+.view-btn {
+  background-color: red;
   border: none;
-  border-radius: 5px;
-  color: white;
+  color: #fff;
+  padding: 8px 16px;
+  margin-bottom: 10px;
   cursor: pointer;
-  font-weight: bold;
+  border-radius: 4px;
 }
 
-.album-card button:hover {
-  background: darkred;
+.view-btn:hover {
+  background-color: darkred;
 }
 
 /* Album view */
 .album-view {
-  padding: 1rem;
+  padding: 20px;
 }
 
-.album-view #back-btn {
-  padding: 0.5rem 1rem;
-  background: red;
-  color: white;
+.album-view.hidden {
+  display: none;
+}
+
+#back-btn {
+  background-color: #333;
+  color: #fff;
   border: none;
-  border-radius: 5px;
-  margin-bottom: 1rem;
+  padding: 8px 16px;
+  margin-bottom: 10px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
-.hidden { display: none; }
+#back-btn:hover {
+  background-color: #555;
+}
 
 .media-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.media-container img,
-.media-container iframe {
-  width: 100%;
-  border-radius: 8px;
-}
-
-/* Password overlay */
-.password-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.95);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.password-box {
-  background: #111;
-  padding: 2rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.password-box input {
-  padding: 0.5rem;
-  width: 80%;
-  margin: 1rem 0;
-  border-radius: 5px;
-  border: none;
-}
-
-.password-box button {
-  padding: 0.5rem 1rem;
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.error-msg {
-  color: red;
-  margin-top: 0.5rem;
+.media-container img, 
+.media-container iframe {
+  max-width: 300px;
+  max-height: 200px;
+  border-radius: 4px;
 }
