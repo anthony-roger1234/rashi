@@ -1,9 +1,0 @@
-{
-  "title": "Aili Aplasca",
-  "cover": "example.jpg",
-  "media": [
-    { "type": "image", "src": "example.jpg" },
-    { "type": "image", "src": "example.jpg" },
-    { "type": "video", "src": "example" }
-  ]
-}
