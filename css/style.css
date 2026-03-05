@@ -41,6 +41,7 @@ h1 .yellow {
   overflow: hidden;
   text-align: center;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .album-card:hover {
@@ -106,4 +107,12 @@ h1 .yellow {
   max-width: 300px;
   max-height: 200px;
   border-radius: 4px;
+}
+
+/* Make album view images responsive */
+@media (max-width: 768px) {
+  .media-container img, .media-container iframe {
+    max-width: 100%;
+    height: auto;
+  }
 }
