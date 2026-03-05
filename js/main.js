@@ -118,3 +118,40 @@ backBtn.addEventListener('click', showAlbumList);
 
 // Initialize page
 initAlbums();
+// Lightbox functionality
+const lightboxOverlay = document.getElementById('lightbox-overlay');
+const lightboxImg = document.getElementById('lightbox-img');
+let scale = 1;
+
+// Open lightbox when clicking an image in album view
+mediaContainer.addEventListener('click', (e) => {
+  if(e.target.tagName === 'IMG') {
+    lightboxImg.src = e.target.src;
+    scale = 1;
+    lightboxImg.style.transform = `scale(${scale})`;
+    lightboxOverlay.style.display = 'flex';
+  }
+});
+
+// Zoom with scroll
+lightboxOverlay.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const delta = e.deltaY < 0 ? 0.1 : -0.1;
+  scale += delta;
+  scale = Math.min(Math.max(scale, 0.5), 5); // min 0.5x, max 5x
+  lightboxImg.style.transform = `scale(${scale})`;
+});
+
+// Close lightbox when clicking outside the image
+lightboxOverlay.addEventListener('click', (e) => {
+  if(e.target === lightboxOverlay) {
+    lightboxOverlay.style.display = 'none';
+  }
+});
+
+// Close on ESC
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    lightboxOverlay.style.display = 'none';
+  }
+});
