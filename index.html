@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,23 +7,15 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
-  <!-- Password overlay -->
-  <div id="password-overlay" class="password-overlay">
-    <div class="password-box">
-      <h2>Enter Password</h2>
-      <input type="password" id="password-input" placeholder="Password">
-      <button id="password-btn">Unlock</button>
-      <p id="password-msg" class="error-msg"></p>
-    </div>
-  </div>
-
-  <header id="main-header" class="hidden">
-    <h1><span class="white-text">RASHI</span> <span class="yellow-text">ARCHIVE</span></h1>
+  <header>
+    <h1><span class="white">RASHI</span> <span class="yellow">ARCHIVE</span></h1>
   </header>
 
-  <main id="main-content" class="hidden">
+  <main>
+    <!-- Album list -->
     <div id="album-list" class="album-list"></div>
+
+    <!-- Album view -->
     <div id="album-view" class="album-view hidden">
       <button id="back-btn">← Back</button>
       <h2 id="album-title"></h2>
