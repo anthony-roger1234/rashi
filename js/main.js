@@ -1,42 +1,19 @@
-const PASSWORD = "rashi1234";
-
-// Elements
-const passwordOverlay = document.getElementById('password-overlay');
-const passwordInput = document.getElementById('password-input');
-const passwordBtn = document.getElementById('password-btn');
-const passwordMsg = document.getElementById('password-msg');
-
-const mainHeader = document.getElementById('main-header');
-const mainContent = document.getElementById('main-content');
 const albumList = document.getElementById('album-list');
 const albumView = document.getElementById('album-view');
 const albumTitle = document.getElementById('album-title');
 const mediaContainer = document.getElementById('media-container');
 const backBtn = document.getElementById('back-btn');
 
-// Password check
-passwordBtn.addEventListener('click', () => {
-  if (passwordInput.value === PASSWORD) {
-    passwordOverlay.style.display = 'none';
-    mainHeader.classList.remove('hidden');
-    mainContent.classList.remove('hidden');
-  } else {
-    passwordMsg.textContent = "Incorrect password!";
-  }
-});
-
-// Load all albums dynamically from albums/albums.json
-function loadAlbums() {
-  fetch('albums/albums.json')
-    .then(res => res.json())
-    .then(albumFiles => {
-      albumFiles.forEach(file => {
-        fetch(`albums/${file}`)
-          .then(res => res.json())
-          .then(data => createAlbumCard(data));
-      });
+// Load albums from albums.json
+fetch('albums/albums.json')
+  .then(res => res.json())
+  .then(albumFiles => {
+    albumFiles.forEach(file => {
+      fetch(`albums/${file}`)
+        .then(res => res.json())
+        .then(data => createAlbumCard(data));
     });
-}
+  });
 
 // Create album card
 function createAlbumCard(album) {
@@ -51,9 +28,9 @@ function createAlbumCard(album) {
   albumList.appendChild(card);
 }
 
-// Show album media
+// Show album view
 function showAlbum(album) {
-  albumList.classList.add('hidden');
+  albumList.style.display = 'none';
   albumView.classList.remove('hidden');
   albumTitle.textContent = album.title;
   mediaContainer.innerHTML = '';
@@ -73,11 +50,8 @@ function showAlbum(album) {
   });
 }
 
-// Back to album list
+// Back button
 backBtn.addEventListener('click', () => {
   albumView.classList.add('hidden');
-  albumList.classList.remove('hidden');
+  albumList.style.display = 'flex';
 });
-
-// Initialize
-loadAlbums();
