@@ -9,11 +9,12 @@ body {
 header {
   text-align: center;
   padding: 20px;
-  background-color: #111;
+  background-color: #000; /* black header */
 }
 
 h1 {
   font-size: 2.5em;
+  margin: 0;
 }
 
 h1 .white {
@@ -26,18 +27,27 @@ h1 .yellow {
 
 /* Album list */
 .album-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
   gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* For smaller screens, switch to 1 column */
+@media (max-width: 768px) {
+  .album-list {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
 }
 
 .album-card {
   background-color: #111;
   border: 1px solid #444;
   border-radius: 8px;
-  width: 220px;
+  width: 100%;
+  max-width: 220px;
   overflow: hidden;
   text-align: center;
   transition: transform 0.2s;
@@ -102,16 +112,17 @@ h1 .yellow {
   gap: 10px;
 }
 
-.media-container img, 
+.media-container img,
 .media-container iframe {
   max-width: 300px;
   max-height: 200px;
   border-radius: 4px;
 }
 
-/* Make album view images responsive */
+/* Responsive album view images/videos */
 @media (max-width: 768px) {
-  .media-container img, .media-container iframe {
+  .media-container img,
+  .media-container iframe {
     max-width: 100%;
     height: auto;
   }
