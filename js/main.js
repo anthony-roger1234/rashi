@@ -14,14 +14,6 @@ const albumTitle = document.getElementById('album-title');
 const mediaContainer = document.getElementById('media-container');
 const backBtn = document.getElementById('back-btn');
 
-// Albums JSON
-const albums = [
-  'albums/album1.json',
-  'albums/album2.json',
-  'albums/album3.json',
-  'albums/album4.json'
-];
-
 // Password check
 passwordBtn.addEventListener('click', () => {
   if (passwordInput.value === PASSWORD) {
@@ -33,23 +25,30 @@ passwordBtn.addEventListener('click', () => {
   }
 });
 
-// Load albums dynamically
+// Load all albums dynamically from albums/albums.json
 function loadAlbums() {
-  albums.forEach(albumPath => {
-    fetch(albumPath)
-      .then(res => res.json())
-      .then(data => {
-        const card = document.createElement('div');
-        card.classList.add('album-card');
-        card.innerHTML = `
-          <img src="${data.cover}" alt="${data.title}">
-          <h3>${data.title}</h3>
-          <button class="view-btn">VIEW</button>
-        `;
-        card.querySelector('.view-btn').addEventListener('click', () => showAlbum(data));
-        albumList.appendChild(card);
+  fetch('albums/albums.json')
+    .then(res => res.json())
+    .then(albumFiles => {
+      albumFiles.forEach(file => {
+        fetch(`albums/${file}`)
+          .then(res => res.json())
+          .then(data => createAlbumCard(data));
       });
-  });
+    });
+}
+
+// Create album card
+function createAlbumCard(album) {
+  const card = document.createElement('div');
+  card.classList.add('album-card');
+  card.innerHTML = `
+    <img src="${album.cover}" alt="${album.title}">
+    <h3>${album.title}</h3>
+    <button class="view-btn">VIEW</button>
+  `;
+  card.querySelector('.view-btn').addEventListener('click', () => showAlbum(album));
+  albumList.appendChild(card);
 }
 
 // Show album media
