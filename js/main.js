@@ -3,18 +3,34 @@ const albumView = document.getElementById('album-view');
 const albumTitle = document.getElementById('album-title');
 const mediaContainer = document.getElementById('media-container');
 const backBtn = document.getElementById('back-btn');
+const paginationControls = document.getElementById('pagination-controls');
 
-// Load all albums from albums.json
-fetch('albums/albums.json')
-  .then(res => res.json())
-  .then(albumFiles => {
-    // Fetch all album JSONs in parallel
-    return Promise.all(albumFiles.map(file => fetch(`albums/${file}`).then(res => res.json())));
-  })
-  .then(albums => {
-    albums.forEach(album => createAlbumCard(album));
-  })
-  .catch(err => console.error("Error loading albums:", err));
+const albumsPerPage = 24;
+let currentPage = 1;
+let allAlbums = [];
+
+// Sample data simulating album JSONs - replace this with your fetch calls
+function getSampleAlbums() {
+  const sampleAlbums = [];
+  for (let i = 1; i <= 50; i++) {
+    sampleAlbums.push({
+      title: `Album ${i}`,
+      cover: 'https://via.placeholder.com/220x180?text=Cover+' + i,
+      media: [
+        { type: 'image', src: 'https://via.placeholder.com/300x200?text=Photo+' + i + '-1' },
+        { type: 'image', src: 'https://via.placeholder.com/300x200?text=Photo+' + i + '-2' },
+        { type: 'video', src: 'https://www.youtube.com/embed/dQw4w9WgXcQ' }
+      ]
+    });
+  }
+  return sampleAlbums;
+}
+
+// Initialize albums (simulate fetching)
+function initAlbums() {
+  allAlbums = getSampleAlbums();
+  renderAlbumPage(currentPage);
+}
 
 // Create album card
 function createAlbumCard(album) {
@@ -29,9 +45,39 @@ function createAlbumCard(album) {
   albumList.appendChild(card);
 }
 
+// Render album list page
+function renderAlbumPage(page) {
+  albumList.innerHTML = '';
+  const start = (page - 1) * albumsPerPage;
+  const end = start + albumsPerPage;
+  const albumsToShow = allAlbums.slice(start, end);
+
+  albumsToShow.forEach(album => createAlbumCard(album));
+  renderPaginationControls();
+  showAlbumList();
+}
+
+// Render pagination controls
+function renderPaginationControls() {
+  paginationControls.innerHTML = '';
+  const totalPages = Math.ceil(allAlbums.length / albumsPerPage);
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.classList.toggle('active', i === currentPage);
+    btn.addEventListener('click', () => {
+      currentPage = i;
+      renderAlbumPage(currentPage);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    paginationControls.appendChild(btn);
+  }
+}
+
 // Show album view
 function showAlbum(album) {
   albumList.style.display = 'none';
+  paginationControls.style.display = 'none';
   albumView.classList.remove('hidden');
   albumTitle.textContent = album.title;
   mediaContainer.innerHTML = '';
@@ -44,7 +90,7 @@ function showAlbum(album) {
       element.alt = album.title;
     } else if (item.type === 'video') {
       element = document.createElement('iframe');
-      // Ensure YouTube videos use embed URL
+      // Fix YouTube embed URL if needed
       if (item.src.includes("youtube.com/watch")) {
         element.src = item.src.replace("watch?v=", "embed/");
       } else {
@@ -60,8 +106,15 @@ function showAlbum(album) {
   });
 }
 
-// Back button
-backBtn.addEventListener('click', () => {
+// Show album list and pagination
+function showAlbumList() {
   albumView.classList.add('hidden');
-  albumList.style.display = 'flex';
-});
+  albumList.style.display = 'grid';
+  paginationControls.style.display = 'block';
+}
+
+// Back button handler
+backBtn.addEventListener('click', showAlbumList);
+
+// Initialize page
+initAlbums();
