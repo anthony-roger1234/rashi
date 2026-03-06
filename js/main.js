@@ -1,4 +1,4 @@
-const albumsPerPage = 20;
+const albumsPerPage = 3;
 let currentPage = 1;
 let albumData = [];
 
