@@ -1,0 +1,12 @@
+[
+{
+"id":"album1",
+"title":"Nature Collection",
+"preview":"https://picsum.photos/300/200"
+},
+{
+"id":"album2",
+"title":"City Album",
+"preview":"https://picsum.photos/301/200"
+}
+]
