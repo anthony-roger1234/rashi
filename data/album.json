@@ -1,12 +1,17 @@
 [
 {
 "id":"album1",
-"title":"Nature Collection",
-"preview":"https://picsum.photos/300/200"
+"title":"Aili Aplasca",
+"preview":"https://simp6.selti-delivery.ru/images4/PIC_82648de91d74e8bbc.jpg"
 },
 {
 "id":"album2",
-"title":"City Album",
-"preview":"https://picsum.photos/301/200"
+"title":"Ally Julian . lysiahly_llya",
+"preview":"https://simp6.selti-delivery.ru/images4/PIC_114c31295d49aa4c9c.jpg"
+},
+{
+"id":"album3",
+"title":"Aicy Fabe",
+"preview":"https://simp6.selti-delivery.ru/images4/PIC_41906916a0ea8252d5.jpg"
 }
 ]
