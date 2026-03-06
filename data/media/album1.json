@@ -1,0 +1,14 @@
+[
+{
+"type":"image",
+"url":"https://picsum.photos/900/600"
+},
+{
+"type":"image",
+"url":"https://picsum.photos/901/600"
+},
+{
+"type":"video",
+"url":"https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
+}
+]
