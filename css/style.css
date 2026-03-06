@@ -1,176 +1,119 @@
-/* General styling */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #000;
-  color: #fff;
+body{
+background:black;
+color:white;
+margin:0;
+font-family:Arial;
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-  background-color: #000;
+h1{
+text-align:center;
+padding:20px;
 }
 
-h1 {
-  font-size: 2.5em;
-  margin: 0;
+#albumGrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+grid-template-rows:repeat(5,auto);
+gap:20px;
+padding:40px;
 }
 
-h1 .white {
-  color: #fff;
+.album{
+background:#111;
+padding:10px;
+text-align:center;
+transition:0.3s;
 }
 
-h1 .yellow {
-  color: #FFD700;
+.album:hover{
+transform:scale(1.05);
+box-shadow:0 0 12px red;
 }
 
-/* Album list */
-.album-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-  justify-items: center;
+.album img{
+width:100%;
+height:160px;
+object-fit:cover;
 }
 
-@media (max-width: 768px) {
-  .album-list {
-    grid-template-columns: 1fr;
-    padding: 10px;
-  }
+.album h3{
+margin:10px 0;
 }
 
-/* Album card */
-.album-card {
-  background-color: #111;
-  border: 1px solid #444;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 220px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.2s;
-  cursor: pointer;
+.viewBtn{
+background:red;
+border:none;
+color:white;
+padding:10px;
+cursor:pointer;
 }
 
-.album-card:hover {
-  transform: scale(1.05);
+.pagination{
+text-align:center;
+padding:20px;
 }
 
-/* Smaller thumbnails */
-.album-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  cursor: zoom-in;
+.pagination button{
+background:#222;
+color:white;
+border:none;
+padding:10px 15px;
+margin:5px;
+cursor:pointer;
 }
 
-.album-card h3 {
-  margin: 10px 0;
-  font-size: 1.1em;
+.pagination button:hover{
+background:red;
 }
 
-.view-btn {
-  background-color: red;
-  border: none;
-  color: #fff;
-  padding: 8px 16px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border-radius: 4px;
+#mediaGrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:40px;
 }
 
-.view-btn:hover {
-  background-color: darkred;
+.mediaItem img,
+.mediaItem video{
+width:100%;
+cursor:pointer;
 }
 
-/* Album view */
-.album-view {
-  padding: 20px;
+#lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.album-view.hidden {
-  display: none;
+.hidden{
+display:none;
 }
 
-#back-btn {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border-radius: 4px;
+#lightboxContent img,
+#lightboxContent video{
+max-width:90%;
+max-height:90%;
 }
 
-#back-btn:hover {
-  background-color: #555;
+#closeLightbox{
+position:absolute;
+top:20px;
+right:40px;
+font-size:30px;
+cursor:pointer;
 }
 
-/* Media container */
-.media-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.media-container img,
-.media-container iframe {
-  max-width: 300px;
-  max-height: 200px;
-  border-radius: 4px;
-  cursor: zoom-in;
-}
-
-@media (max-width: 768px) {
-  .media-container img,
-  .media-container iframe {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-/* Pagination */
-#pagination-controls {
-  text-align: center;
-  margin: 20px 0;
-}
-
-#pagination-controls button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  background-color: #333;
-  color: #fff;
-  font-weight: bold;
-}
-
-#pagination-controls button.active {
-  background-color: #FFD700;
-  color: #000;
-}
-
-/* Lightbox overlay */
-#lightbox-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.95);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  overflow: hidden;
-}
-
-#lightbox-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  cursor: grab;
-  transition: transform 0.2s ease;
+#exitBtn{
+background:red;
+border:none;
+color:white;
+padding:10px 20px;
+margin:20px;
+cursor:pointer;
 }
